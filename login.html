@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <!-- Import Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+
+    <!-- Dekorasi Lingkaran Background -->
+    <div class="bg-circle-top"></div>
+    <div class="bg-circle-bottom"></div>
+
+    <!-- Kartu Form Login -->
+    <div class="login-card">
+        <h2 class="title">SIGN IN</h2>
+        
+        <form id="loginForm">
+            <!-- Input Username / Email -->
+            <div class="input-group">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" id="username" placeholder="AssarDeveloper" required>
+            </div>
+
+            <!-- Input Password -->
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+
+            <!-- Tombol Sign In -->
+            <button type="submit" class="btn-signin">SIGN IN</button>
+        </form>
+
+        <!-- Bagian Link Navigasi -->
+        <div class="links-container">
+            <a href="#" class="forget-pwd" onclick="handleForgotPassword()">Forget Password?</a>
+            <p class="signup-text">
+                don't have a account? <a href="#" onclick="handleSignUp()">SIGN UP</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah reload halaman
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Logika aksi saat tombol SIGN IN ditekan
+            if (username && password) {
+                alert(`Login Berhasil!\nSelamat datang, ${username}`);
+                // Anda bisa menambahkan logika pengalihan halaman di sini:
+                // window.location.href = "dashboard.html";
+                window.location.href = "Main.html"; // Contoh pengalihan ke halaman utama
+            } else {
+                alert('Silakan isi semua bidang!');
+            }
+        });
+
+        function handleForgotPassword() {
+            alert('Fitur Lupa Password dipanggil!');
+        }
+
+        function handleSignUp() {
+            alert('Pengalihan ke halaman pendaftaran (Sign Up)...');
+        }
+    </script>
+    <head>
+            <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Elemen Dekorasi Bulatan Biru Background */
+        .bg-circle-top {
+            position: absolute;
+            top: -100px;
+            right: -80px;
+            width: 320px;
+            height: 320px;
+            background-color: #0d1b6a;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .bg-circle-bottom {
+            position: absolute;
+            bottom: -100px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            background-color: #0d1b6a;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Kartu Login */
+        .login-card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 380px;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+            position: relative;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Input Group */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 16px;
+            color: #777;
+            font-size: 16px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            border: 1px solid #e1e4e8;
+            border-radius: 10px;
+            background-color: #f9fafb;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #0d1b6a;
+            background-color: #ffffff;
+        }
+
+        .input-group input::placeholder {
+            color: #a0aec0;
+        }
+
+        /* Tombol Sign In */
+        .btn-signin {
+            width: 100%;
+            padding: 14px;
+            background-color: #0d1b6a;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-signin:hover {
+            background-color: #09134b;
+        }
+
+        /* Link & Text Bawah */
+        .links-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .forget-pwd {
+            display: block;
+            color: #666;
+            font-size: 13px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: color 0.2s ease;
+        }
+
+        .forget-pwd:hover {
+            color: #0d1b6a;
+        }
+
+        .signup-text {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .signup-text a {
+            color: #0d1b6a;
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    </head>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Sembako Kebutuhan Pokok Harga Terjangkau</title>
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap 5 CSS (Wajib untuk Carousel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Style -->
+        <link rel="stylesheet" href="style.css">
+
+    <!-- Perbaikan navbar (minimal, tidak menimpa gaya dari style.css) -->
+    <style>
+        html { scroll-behavior: smooth; }
+        #produk, #tentang, #kontak, #home { scroll-margin-top: 130px; }
+        .site-header { position: sticky; top: 0; z-index: 1020; }
+        /* Keranjang & overlay harus di atas header agar judul dan tombol tutup terlihat */
+        .overlay { z-index: 1090; }
+        .drawer { z-index: 1100; }
+        .toast { z-index: 1200; }
+        .nav-toggle { display: none; }
+        @media (max-width: 767.98px) {
+            .nav-toggle { display: inline-flex; gap: 8px; align-items: center; background: none; border: 0; font: inherit; font-weight: 700; padding: 10px 0; color: inherit; cursor: pointer; }
+            .main-nav ul { display: none !important; flex-direction: column; }
+            .main-nav ul.open { display: flex !important; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container header-row">
+            <a href="#home" class="logo">
+                <i class="fa-solid fa-basket-shopping logo-icon"></i> Toko<span>Sembako</span>
+            </a>
+
+            <form class="search" onsubmit="return false">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" id="search-input" placeholder="Cari beras, minyak, gula..."
+                    aria-label="Cari produk">
+                <button type="submit">Cari</button>
+            </form>
+
+            <button type="button" id="open-cart" class="cart-btn" aria-label="Buka keranjang belanja">
+                <div class="cart-icon-wrapper">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <span>Keranjang</span>
+                <span id="cart-count">0</span>
+            </button>
+        </div>
+
+        <nav class="main-nav" aria-label="Menu utama">
+            <div class="container">
+                <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="nav-list">
+                    <i class="fa-solid fa-bars"></i> Menu
+                </button>
+                <ul id="nav-list">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#produk">Produk</a></li>
+                    <li><a href="#tentang">Tentang Usaha</a></li>
+                    <li><a href="#kontak">Hubungi Kami</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="home">
+        <!-- Carousel Section -->
+        <section class="carousel-section my-4">
+            <div class="container">
+                <div id="carouselExampleDark" class="carousel carousel-dark slide rounded-4 overflow-hidden shadow-sm" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="5000">
+                            <img src="carousel1.png" class="d-block w-100 carousel-img" alt="Promo Sembako 1">
+                            <div class="carousel-caption d-none d-md-block custom-caption">
+                                <h5>Sembako Hemat Kebutuhan Harian</h5>
+                                <p>Dapatkan penawaran harga terbaik untuk beras, minyak, dan gula setiap minggu.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="5000">
+                            <img src="carousel2.png" class="d-block w-100 carousel-img" alt="Promo Sembako 2">
+                            <div class="carousel-caption d-none d-md-block custom-caption">
+                                <h5>Bahan Pokok Lengkap & Segar</h5>
+                                <p>Pilihan tepat untuk memenuhi kebutuhan dapur keluarga Anda.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="5000">
+                            <img src="carousel3.png" class="d-block w-100 carousel-img" alt="Promo Sembako 3">
+                            <div class="carousel-caption d-none d-md-block custom-caption">
+                                <h5>Layanan Antar Cepat</h5>
+                                <p>Pesan dari rumah, barang langsung kami antarkan tepat waktu.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Section Modern -->
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <span class="badge"><i class="fa-solid fa-star"></i> Solusi Dapur Praktis</span>
+                    <h1>Belanja Sembako Lengkap Tanpa Keluar Rumah</h1>
+                    <p>Beras pilihan, minyak goreng, gula, dan perlengkapan dapur. Harga bersahabat, diantar cepat
+                        sampai ke pintu Anda.</p>
+
+                    <div class="hero-actions">
+                        <a href="#produk" class="btn btn-primary"><i class="fa-solid fa-bag-shopping"></i> Belanja
+                            Sekarang</a>
+                        <a href="#produk" class="btn btn-outline">Lihat Promo</a>
+                    </div>
+                </div>
+
+                <div class="hero-promo-card">
+                    <div class="promo-tag">PROMO MINGGU INI</div>
+                    <div class="promo-body">
+                        <h3>Beras Premium 5 kg</h3>
+                        <p class="promo-desc">Beras pulen kualitias super langsung dari petani.</p>
+                        <div class="promo-price-tag">
+                            <span class="current-price">Rp 95.000</span>
+                            <span class="old-price">Rp 105.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Benefits -->
+        <section class="benefits-wrapper">
+            <div class="container benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div>
+                        <strong>Antar Cepat</strong>
+                        <span>Sampai di hari yang sama</span>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <div>
+                        <strong>Stok Segar</strong>
+                        <span>Kualitas dicek tiap hari</span>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <div>
+                        <strong>Bayar di Tempat</strong>
+                        <span>Bisa COD atau Transfer</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="container section">
+            <div class="section-head">
+                <div>
+                    <h2>Kategori Pilihan</h2>
+                    <p class="section-sub">Temukan bahan pokok harian Anda dengan mudah</p>
+                </div>
+                <a href="#produk" class="link-more">Lihat semua <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="categories">
+                <button type="button" class="cat" data-cat="beras"><span>🌾</span>Beras &amp; Tepung</button>
+                <button type="button" class="cat" data-cat="gula"><span>🍯</span>Gula &amp; Pemanis</button>
+                <button type="button" class="cat" data-cat="minyak"><span>🛢️</span>Minyak Goreng</button>
+                <button type="button" class="cat" data-cat="telur"><span>🥚</span>Telur Segar</button>
+                <button type="button" class="cat" data-cat="mie"><span>🍜</span>Mi &amp; Pasta</button>
+                <button type="button" class="cat" data-cat="kopi"><span>☕</span>Kopi &amp; Teh </button>
+                <button type="button" class="cat" data-cat="susu"><span>🥛</span>Susu Kemasan</button>
+                <button type="button" class="cat" data-cat="roti"><span>🍞</span>Roti &amp; Kue</button>
+                <button type="button" class="cat" data-cat="perawatan"><span>🧴</span>Perawatan Diri</button>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="container section" id="produk">
+            <div class="section-head">
+                <div>
+                    <h2>Produk Unggulan</h2>
+                    <p class="section-sub">Pilihan terbaik untuk kebutuhan keluarga</p>
+                </div>
+                <div class="tools">
+                    <select id="sort-select" aria-label="Urutkan produk">
+                        <option value="default">Urutkan Produk</option>
+                        <option value="murah">Harga: Terendah</option>
+                        <option value="mahal">Harga: Tertinggi</option>
+                    </select>
+                    <button type="button" id="reset-filter" class="btn-reset">Tampilkan Semua</button>
+                </div>
+            </div>
+            <div class="product-list" id="product-list"></div>
+            <p id="empty-state" class="empty" hidden>Produk tidak ditemukan. Coba kata kunci lain atau klik "Tampilkan
+                semua".</p>
+        </section>
+
+        <!-- About Section -->
+        <section class="container section about-banner" id="tentang">
+            <div class="about-content">
+                <h2>Komitmen Toko Sembako</h2>
+                <p>Kami hadir untuk mempermudah pembelian kebutuhan dapur pada konsumen dengan menyajikan bahan makanan
+                    berkualitas, segar, serta harga yang selalu bersaing dan transparan.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" id="kontak">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="#home" class="logo logo-footer">
+                    <i class="fa-solid fa-basket-shopping"></i> Toko<span>Sembako</span>
+                </a>
+                <p>Kebutuhan pokok lengkap, harga terjangkau, layanan ramah dan antar langsung sampai pintu rumah Anda.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h3>Navigasi</h3>
+                <ul>
+                    <li><a href="#produk">Daftar Produk</a></li>
+                    <li><a href="#tentang">Tentang Kami</a></li>
+                    <li><a href="#kontak">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Kontak &amp; Alamat</h3>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@tokosembako.com">info@tokosembako.com</a></li>
+                    <li><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/6281234567890" target="_blank">0887-0591-6124</a></li>
+                    <li><i class="fa-solid fa-location-dot"></i> <a href="https://maps.app.goo.gl/Gr5dBRq9Mh7Yx8oT7" target="_blank">Jl. Tamangapa Raya 5 NO 40</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 Toko Sembako. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer & Overlay -->
+    <div id="overlay" class="overlay"></div>
+    <aside id="cart-drawer" class="drawer" aria-label="Keranjang belanja">
+        <div class="drawer-head">
+            <h2>Keranjang</h2>
+            <button type="button" id="close-cart" aria-label="Tutup keranjang">&times;</button>
+        </div>
+        <div id="cart-items" class="drawer-body"></div>
+        <div class="drawer-foot">
+            <div class="total-row"><span>Total</span><strong id="cart-total">Rp 0</strong></div>
+            <button type="button" id="checkout-btn" class="btn">Pesan lewat WhatsApp</button>
+            <button type="button" id="clear-cart" class="link-btn">Kosongkan keranjang</button>
+        </div>
+    </aside>
+    <div id="toast" class="toast" role="status"></div>
+
+    <!-- Bootstrap 5 JS Bundle (Wajib untuk animasi Carousel) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+        (function () {
+            var toggle = document.getElementById('nav-toggle');
+            var list = document.getElementById('nav-list');
+            var links = Array.prototype.slice.call(document.querySelectorAll('#nav-list a'));
+            toggle.addEventListener('click', function () {
+                var open = list.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', open);
+            });
+            function setActive(hash) {
+                links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === hash); });
+            }
+            links.forEach(function (a) {
+                a.addEventListener('click', function () {
+                    setActive(a.getAttribute('href'));
+                    list.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+            var ids = ['#home', '#produk', '#tentang', '#kontak'];
+            window.addEventListener('scroll', function () {
+                var cur = '#home';
+                ids.forEach(function (id) {
+                    var el = id === '#home' ? null : document.querySelector(id);
+                    if (el && el.getBoundingClientRect().top <= 160) cur = id;
+                });
+                if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) cur = '#kontak';
+                setActive(cur);
+            }, { passive: true });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
