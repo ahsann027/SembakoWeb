@@ -1,5 +1,3 @@
-/* ===== Data produk =====
-   gambar: nama file (satu folder dengan Main.html) atau link langsung, mis. 'https://situs.com/beras.jpg' */
 var products = [
     { id: 1, nama: 'Beras Premium 5 kg', kategori: 'beras', harga: 95000, hargaAsli: 105000, gambar: 'beras-premium.jpg', ikon: '🌾' },
     { id: 2, nama: 'Tepung Terigu 1 kg', kategori: 'beras', harga: 15000, gambar: 'tepung-terigu.jpg', ikon: '🌾' },
@@ -16,13 +14,11 @@ var products = [
     { id: 13, nama: 'Pasta Gigi', kategori: 'perawatan', harga: 8000, gambar: 'pasta-gigi.jpg', ikon: '🪥' },
 ];
 
-var NOMOR_WA = '6281234567890'; // ganti dengan nomor toko (awali 62)
+var NOMOR_WA = '6281234567890';
 
-/* ===== State ===== */
 var cart = loadCart();
 var filter = { kategori: 'semua', kata: '', urut: 'default' };
 
-/* ===== Elemen ===== */
 var $list = document.getElementById('product-list');
 var $empty = document.getElementById('empty-state');
 var $count = document.getElementById('cart-count');
@@ -32,7 +28,6 @@ var $items = document.getElementById('cart-items');
 var $total = document.getElementById('cart-total');
 var $toast = document.getElementById('toast');
 
-/* ===== Fungsi bantu ===== */
 function rupiah(n) {
     return 'Rp ' + n.toLocaleString('id-ID');
 }
@@ -57,7 +52,6 @@ function showToast(text) {
     showToast.t = setTimeout(function () { $toast.classList.remove('show'); }, 1800);
 }
 
-/* ===== Tampilkan produk ===== */
 function getVisibleProducts() {
     var hasil = products.filter(function (p) {
         var cocokKat = filter.kategori === 'semua' || p.kategori === filter.kategori;
@@ -89,7 +83,6 @@ function renderProducts() {
     });
 }
 
-/* ===== Keranjang ===== */
 function addToCart(id) {
     var item = cart.filter(function (c) { return c.id === id; })[0];
     if (item) item.qty++;
@@ -147,7 +140,6 @@ function checkout() {
     window.open('https://wa.me/' + NOMOR_WA + '?text=' + encodeURIComponent(pesan), '_blank');
 }
 
-/* ===== Event ===== */
 document.addEventListener('click', function (e) {
     var add = e.target.closest('[data-add]');
     if (add) addToCart(Number(add.dataset.add));
@@ -187,6 +179,5 @@ document.getElementById('clear-cart').addEventListener('click', function () {
 });
 document.querySelector('.search').addEventListener('submit', function (e) { e.preventDefault(); });
 
-/* ===== Mulai ===== */
 renderProducts();
 renderCart();
